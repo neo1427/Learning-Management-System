@@ -1,3 +1,10 @@
+/*
+All the required validations for all the fields should be there
+    1. test should not be null.
+    2. studentIds should be atleast of size 1.
+    3. marks size should be equal to size of studentIds.
+*/
+
 package com.iamneo.springboot.LMS.model;
 
 import java.util.List;

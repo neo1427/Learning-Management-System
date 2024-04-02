@@ -1,3 +1,11 @@
+/*
+All the required validations for all the fields should be there
+    1. name should be checked that it is not empty and not blank and not null.
+    2. questions doesn't need any validation.
+    3. teacherId should be checked that it is not empty and not blank and not null.
+    4. tags doesn't need any validation.
+*/
+
 package com.iamneo.springboot.LMS.model;
 
 import java.util.List;

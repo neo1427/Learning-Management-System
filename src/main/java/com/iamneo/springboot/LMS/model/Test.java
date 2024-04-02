@@ -1,3 +1,15 @@
+/*
+All the required validations for all the fields should be there
+    1. name should be checked for not empty and not blank and not null.
+    2. studentId should be checked for not empty and not blank and not null nad no spaces are allowed.
+    3. courseId should be checked for not empty and not blank and not null nad no spaces are allowed.
+    4. startDate should be validated to check that only date of today and after is only allowed.
+    5. startTime should be validated to check that only time of after now only allowed.
+    6. bufferTime should be checked that it's atleast 1 minute.
+    7. duration should be checked that it's atleast 5 minutes.
+    8. questions doesn't need any validations.
+*/
+
 package com.iamneo.springboot.LMS.model;
 
 import java.time.LocalDate;
