@@ -15,6 +15,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Entity
@@ -23,9 +25,12 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
+    @NotEmpty(message = "Question cannot be empty")
     private String question;
+    @Size(min = 2, max = 5, message = "Options should have 2 to 5 elements")
     private List<String> options;
+
+    @Size(min = 1, max = 1, message = "Answer should have exactly 1 character")
     private String answer;
 
     @ManyToOne
