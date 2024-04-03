@@ -15,6 +15,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 @Entity
@@ -25,11 +26,11 @@ public class QuestionBank {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotBlank(message = "Name is required")
     private String name;
-
     @OneToMany
     private List<Question> questions;
-
+    @NotBlank(message = "Teacher ID is required")
     private String teacherId;
     private List<String> tags;
 }

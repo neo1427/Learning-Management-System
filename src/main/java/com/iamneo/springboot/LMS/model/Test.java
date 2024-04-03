@@ -21,6 +21,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 @Entity
@@ -30,14 +34,31 @@ public class Test {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotBlank(message = "Name is required")
+    @Size(min = 1, message = "Name should not be empty")
     private String name;
+
+    @NotBlank(message = "Student ID is required")
+    @Size(min = 1, message = "Student ID should not be empty")
     private String studentId;
+
+    @NotBlank(message = "Course ID is required")
+    @Size(min = 1, message = "Course ID should not be empty")
     private String courseId;
+
+    @NotNull(message = "Start date is required")
     private LocalDate startDate;
-    private LocalTime starTime;
+
+    @NotNull(message = "Start time is required")
+    private LocalTime startTime;
+
+    @Min(value = 1, message = "Buffer time should be at least 1 minute")
     private int bufferTime;
+
+    @Min(value = 5, message = "Duration should be at least 5 minutes")
     private int duration;
 
     @OneToMany
     private List<Question> questions;
 }
+
