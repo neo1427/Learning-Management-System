@@ -1,5 +1,6 @@
-package com.iamneo.springboot.LMS.controller;
+package com.iamneo.springboot.LMS.Controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,7 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/quiz/question")
 @RequiredArgsConstructor
 public class QuestionController {
-
+    @Autowired
     private final QuestionService questionService;
 
     @PostMapping("/addQuestion/{questionBankId}")
