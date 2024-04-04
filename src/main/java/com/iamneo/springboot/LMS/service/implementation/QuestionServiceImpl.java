@@ -32,9 +32,9 @@ public class QuestionServiceImpl implements QuestionService {
     public Question addQuestion(Question question, long questionBankId) throws NotFoundException,Exception {
         QuestionBank questionBank = getQuestionBank(questionBankId);
         question.setQuestionBank(questionBank);
+        question = questionRepository.save(question);
         questionBank.getQuestions().add(question);
         questionBankRepository.save(questionBank);
-        question = questionRepository.save(question);
         return question;
     }
 

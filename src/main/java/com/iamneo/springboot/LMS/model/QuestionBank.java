@@ -28,6 +28,7 @@ public class QuestionBank {
 
     @NotBlank(message = "Name is required")
     private String name;
+    
     @OneToMany
     private List<Question> questions;
     @NotBlank(message = "Teacher ID is required")

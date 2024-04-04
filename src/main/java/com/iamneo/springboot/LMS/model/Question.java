@@ -10,6 +10,8 @@ package com.iamneo.springboot.LMS.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,14 +27,17 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @NotEmpty(message = "Question cannot be empty")
     private String question;
+
     @Size(min = 2, max = 5, message = "Options should have 2 to 5 elements")
     private List<String> options;
 
     @Size(min = 1, max = 1, message = "Answer should have exactly 1 character")
     private String answer;
 
+    @JsonIgnore
     @ManyToOne
     private QuestionBank questionBank;
 }
