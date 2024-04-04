@@ -17,8 +17,8 @@ import com.iamneo.springboot.LMS.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/quiz/question")
 @RequiredArgsConstructor
+@RequestMapping("/quiz/question")
 public class QuestionController {
 
     private final QuestionService questionService;
@@ -53,6 +53,19 @@ public class QuestionController {
         } catch (NotFoundException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/addQuestion/bulk/{questionBankId}") 
+    public ResponseEntity<?> addQuestionBulk(@RequestBody String path, @PathVariable long questionBankId) {
+        try {
+            return new ResponseEntity<>(questionService.addQuestion(path, questionBankId), HttpStatus.CREATED);
+        } 
+        // catch(NotFoundException e) {
+        //     return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        // } 
+        catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

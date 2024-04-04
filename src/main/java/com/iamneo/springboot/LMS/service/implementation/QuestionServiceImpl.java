@@ -1,6 +1,9 @@
 package com.iamneo.springboot.LMS.service.implementation;
 
 import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 import com.iamneo.springboot.LMS.exceptions.NotFoundException;
@@ -13,6 +16,7 @@ import com.iamneo.springboot.LMS.service.QuestionService;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
+@Service
 public class QuestionServiceImpl implements QuestionService {
 
     private final QuestionRepository questionRepository;
@@ -53,6 +57,11 @@ public class QuestionServiceImpl implements QuestionService {
         questionBank.getQuestions().add(question);
         questionBankRepository.save(questionBank);
         return question;
+    }
+
+    @Override
+    public QuestionBank addQuestion(String path, long questionBankId) {
+        return null;
     }
 
 }

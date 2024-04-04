@@ -1,4 +1,4 @@
-package com.iamneo.springboot.LMS.Controller;
+package com.iamneo.springboot.LMS.controller;
 
 public class TestResultController {
 }

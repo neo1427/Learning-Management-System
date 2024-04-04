@@ -1,4 +1,4 @@
-package com.iamneo.springboot.LMS.Service;
+package com.iamneo.springboot.LMS.service;
 
 public class TestService {
     
