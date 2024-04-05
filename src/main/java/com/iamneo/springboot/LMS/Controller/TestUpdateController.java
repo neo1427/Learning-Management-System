@@ -1,7 +1,7 @@
 package com.iamneo.springboot.LMS.Controller;
 
-import com.iamneo.springboot.LMS.Service.TestService;
 import com.iamneo.springboot.LMS.model.Test;
+import com.iamneo.springboot.LMS.service.TestService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
