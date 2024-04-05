@@ -1,11 +1,14 @@
 package com.iamneo.springboot.LMS.Controller;
 
 import com.iamneo.springboot.LMS.Service.TestService;
+import com.iamneo.springboot.LMS.model.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,18 +16,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/tests")
 public class TestUpdateController {
 
-    private final TestService testUpdateService;
+    private final TestService testService;
 
     @Autowired
     public TestUpdateController(TestService testUpdateService) {
-        this.testUpdateService = testUpdateService;
+        this.testService = testUpdateService;
     }
 
     @PutMapping("/{testId}")
-    public ResponseEntity<String> updateTest(/* Add method parameters for test data and authentication */) {
+    public ResponseEntity<?> updateTest(@PathVariable long testId, @RequestBody Test test) {
         
-        testUpdateService.updateTest(/* Pass test data to the service layer */);
+        try {
+            test = testService.updateTest(testId, test);
+            return new ResponseEntity<>(test, HttpStatus.ACCEPTED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
         
-        return ResponseEntity.status(HttpStatus.OK).body("Test updated successfully");
+        // return ResponseEntity.status(HttpStatus.OK).body("Test updated successfully");
     }
 }
