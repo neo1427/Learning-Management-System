@@ -1,0 +1,11 @@
+Question Number,Question,Option 1,Option 1 Iscorrect,Option 2,Option 2 Iscorrect,Option 3,Option 3 Iscorrect,Option 4,Option 4 Iscorrect
+1,Which of the following is the correct syntax to declare a variable in Java?,int varName = 10;,TRUE,var varName = 10;,FALSE,int varName;,FALSE,float varName;,FALSE
+2,What is the output of the following code snippet?,int x = 5; x++; x--; System.out.println(x);,FALSE,5,TRUE,6,FALSE,Compilation error,FALSE
+3,Which statement is used to terminate a switch case in Java?,stop,FALSE,end,FALSE,break,TRUE,terminate,FALSE
+4,What is the result of the following expression in Java?,7 / 2;,FALSE,3.5,TRUE,3,FALSE,4,FALSE
+5,Which loop is guaranteed to execute at least once in Java?,for,FALSE,while,value,do-while,TRUE,,
+6,What is the correct way to declare a method that does not return any value in Java?,void myMethod() { },TRUE,,,,,,
+7,Which operator is used to compare whether two objects refer to the same instance in Java?,==,TRUE,!=,FALSE,===,FALSE,!==,FALSE
+8,Which statement is used to skip the current iteration of a loop in Java?,continue,TRUE,skip,FALSE,,,,
+9,Which class is used to read input from the keyboard in Java?,Scanner,TRUE,Reader,FALSE,,,,
+10,"What does the ""super"" keyword refer to in Java?",Current class,FALSE,Parent class,TRUE,Child class,FALSE,Sibling class,FALSE
