@@ -38,7 +38,7 @@ After which, just direct yourself to whichever place you wish to clone the repos
 
 ### 3. Create a New Branch
 
-Direct yourself into the repository using `cd OpenSource101/`.
+Direct yourself into the repository using `cd Learning-Management-System/`.
 Now, we'll create and switch onto the branch that we will be working on, for editing file in the project.
 
 Creating a branch,
@@ -58,7 +58,7 @@ git branch -a
 
 ### 4. Contribute!
 
-We can finally get to contributing to the repository now!\
+We can finally get to contributing to the repository now!
 
 ### 5. Committing the changes
 
