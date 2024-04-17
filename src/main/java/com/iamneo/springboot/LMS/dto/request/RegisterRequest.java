@@ -1,4 +1,8 @@
 package com.iamneo.springboot.LMS.dto.request;
 
 public class RegisterRequest {
+<<<<<<< HEAD
+    
+=======
+>>>>>>> upstream/master
 }

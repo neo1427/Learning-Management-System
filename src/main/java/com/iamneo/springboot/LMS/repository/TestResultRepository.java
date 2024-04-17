@@ -7,5 +7,10 @@ import com.iamneo.springboot.LMS.model.TestResult;
 
 @Repository
 public interface TestResultRepository extends JpaRepository<TestResult, Long>{
+
+    static Object findAll(String testId) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'findAll'");
+    }
     
 }
