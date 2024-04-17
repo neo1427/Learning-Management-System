@@ -1,4 +1,4 @@
 package com.iamneo.springboot.LMS.enumerated;
 
-public class Role {
+public enum Role {
 }
