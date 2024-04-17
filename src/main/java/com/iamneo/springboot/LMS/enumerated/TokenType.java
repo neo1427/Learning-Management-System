@@ -1,4 +1,5 @@
 package com.iamneo.springboot.LMS.enumerated;
 
-public class TokenType {
+public enum TokenType {
+    BEARER
 }

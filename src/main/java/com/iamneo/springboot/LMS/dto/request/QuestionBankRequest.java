@@ -1,8 +1,5 @@
 package com.iamneo.springboot.LMS.dto.request;
 
 public class QuestionBankRequest {
-<<<<<<< HEAD
-    
-=======
->>>>>>> upstream/master
+
 }
