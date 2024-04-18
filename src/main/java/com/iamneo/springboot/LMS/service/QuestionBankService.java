@@ -1,8 +1,9 @@
 package com.iamneo.springboot.LMS.service;
 
+import java.util.List;
+
 import com.iamneo.springboot.LMS.model.QuestionBank;
 
-import java.util.List;
 
 public interface QuestionBankService {
 
