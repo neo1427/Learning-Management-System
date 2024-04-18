@@ -1,16 +1,20 @@
 package com.iamneo.springboot.LMS.service;
 
-import org.springframework.stereotype.Service;
-
-import com.iamneo.springboot.LMS.exceptions.NotFoundException;
+import com.iamneo.springboot.LMS.dto.response.BulkResponse;
 import com.iamneo.springboot.LMS.model.Question;
+import org.springframework.web.multipart.MultipartFile;
 
-@Service
+import java.io.IOException;
+import java.util.List;
+
 public interface QuestionService {
 
-    public Question addQuestion(Question question, long questionBankId) throws NotFoundException, Exception;
+    Question createQuestion(Question question, long questionBankId);
 
-    public Object getAllQuestions(long questionBankId) throws NotFoundException, Exception;
+    Question updateQuestion(long questionId, Question question);
 
-    public Question updateQuestion(Question question, long questionId) throws NotFoundException, Exception;
+    BulkResponse<List<Question>> bulkUpload(MultipartFile file, long questionBankId) throws IOException, Exception;
+
+    Question getQuestionById(long Id) throws Exception;
+
 }

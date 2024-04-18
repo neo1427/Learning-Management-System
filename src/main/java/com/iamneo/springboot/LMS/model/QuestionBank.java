@@ -1,36 +1,31 @@
-/*
-All the required validations for all the fields should be there
-    1. name should be checked that it is not empty and not blank and not null.
-    2. questions doesn't need any validation.
-    3. teacherId should be checked that it is not empty and not blank and not null.
-    4. tags doesn't need any validation.
-*/
-
 package com.iamneo.springboot.LMS.model;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
-
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class QuestionBank {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long questionBankId;
 
-    @NotBlank(message = "Name is required")
     private String name;
-    @OneToMany
+
+    // @JsonBackReference
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "question_id_question_bank", referencedColumnName = "questionBankId")
     private List<Question> questions;
-    @NotBlank(message = "Teacher ID is required")
+
     private String teacherId;
     private List<String> tags;
 }
