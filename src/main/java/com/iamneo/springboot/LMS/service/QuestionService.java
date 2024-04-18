@@ -1,13 +1,11 @@
 package com.iamneo.springboot.LMS.service;
 
-import java.io.IOException;
-import java.util.List;
-
-import com.iamneo.springboot.LMS.exceptions.NotFoundException;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.iamneo.springboot.LMS.dto.response.BulkResponse;
 import com.iamneo.springboot.LMS.model.Question;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.util.List;
 
 public interface QuestionService {
 
@@ -17,9 +15,6 @@ public interface QuestionService {
 
     BulkResponse<List<Question>> bulkUpload(MultipartFile file, long questionBankId) throws IOException, Exception;
 
-    Question addQuestion(Question question, long questionBankId) throws NotFoundException,Exception;
+    Question getQuestionById(long Id) throws Exception;
 
-    List<Question> getAllQuestions(long questionBankId) throws NotFoundException,Exception;
-
-    Question updateQuestion(Question question, long questionId) throws NotFoundException, Exception;
 }

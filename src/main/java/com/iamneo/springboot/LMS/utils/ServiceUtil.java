@@ -1,13 +1,5 @@
 package com.iamneo.springboot.LMS.utils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import org.springframework.stereotype.Service;
-
 import com.iamneo.springboot.LMS.dto.request.ChoiceRequest;
 import com.iamneo.springboot.LMS.dto.request.QuestionBankRequest;
 import com.iamneo.springboot.LMS.dto.request.QuestionRequest;
@@ -16,8 +8,14 @@ import com.iamneo.springboot.LMS.model.Choice;
 import com.iamneo.springboot.LMS.model.Question;
 import com.iamneo.springboot.LMS.model.QuestionBank;
 import com.iamneo.springboot.LMS.service.QuestionBankService;
-
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -79,17 +77,19 @@ public class ServiceUtil {
     }
 
     public Question mapRequestToEntity(QuestionRequest questionRequest, long questionBankId) throws Exception {
-        Question question = new Question();
-        question.setQuestion(questionRequest.getQuestion());
-        question.setQuestionBank(questionBankService.findById(questionBankId));
+        short count = (short) questionRequest.getOptions().stream().filter(x -> x.isCorrect()).count();
 
         List<ChoiceRequest> choiceRequests = questionRequest.getOptions();
         List<Choice> choices = choiceRequests.stream()
                 .map(this::mapChoiceRequestToEntity)
                 .collect(Collectors.toList());
 
-        question.setOptions(choices);
-        return question;
+        return Question.builder()
+                .question(questionRequest.getQuestion())
+                .questionBank(questionBankService.findById(questionBankId))
+                .options(choices)
+                .numCorrectAnswers(count)
+                .build();
     }
 
     public Choice mapChoiceRequestToEntity(ChoiceRequest choiceRequest) {

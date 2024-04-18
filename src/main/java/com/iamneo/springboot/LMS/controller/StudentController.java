@@ -1,4 +1,5 @@
 package com.iamneo.springboot.LMS.Controller;
 
-public class TestResultController {
+public class StudentController {
+
 }

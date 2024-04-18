@@ -1,4 +1,8 @@
 package com.iamneo.springboot.LMS.model;
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,4 +32,8 @@ public class Choice {
     @ManyToOne
     @JoinColumn(name = "question_id", referencedColumnName = "questionId")
     private Question question;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master

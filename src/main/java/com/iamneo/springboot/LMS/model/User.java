@@ -1,26 +1,17 @@
 package com.iamneo.springboot.LMS.model;
 
-import java.util.Collection;
-import java.util.List;
-
-import com.iamneo.springboot.LMS.enumerated.Role;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import com.iamneo.springboot.LMS.enumerated.Role;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
+import java.util.List;
 
 @Data
 @Entity
@@ -42,7 +33,7 @@ public class User implements UserDetails {
 
     @JsonBackReference
     @OneToMany(mappedBy = "user")
-    private List<Token> tokens;
+    private List<Token> tokens;    
 
 
     @Override

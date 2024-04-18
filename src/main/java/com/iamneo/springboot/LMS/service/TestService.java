@@ -1,12 +1,10 @@
 package com.iamneo.springboot.LMS.service;
 
-import java.util.List;
-
-import javax.validation.Valid;
-
 import com.iamneo.springboot.LMS.dto.request.TestRequest;
 import com.iamneo.springboot.LMS.model.Test;
 
+import javax.validation.Valid;
+import java.util.List;
 
 public interface TestService {
 
@@ -16,10 +14,6 @@ public interface TestService {
 
     Test updateTest(long testId, TestRequest testRequest);
 
-    List<Test> getAllTests();
-
-    Test getTestById(long testId);
-
-    List<Test> getAllTestByCourseId(String courseId);
+    // List<Answer> getAllTestByCourseId(String courseId);
 
 }

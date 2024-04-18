@@ -1,16 +1,18 @@
-package com.iamneo.springboot.LMS.service.implementation;
+package com.iamneo.springboot.LMS.service.implementations;
 
+import com.iamneo.springboot.LMS.service.QuestionBankService;
+import org.hibernate.service.spi.ServiceException;
+import org.springframework.stereotype.Service;
 
 import com.iamneo.springboot.LMS.model.QuestionBank;
 import com.iamneo.springboot.LMS.repository.QuestionBankRepository;
-import com.iamneo.springboot.LMS.service.QuestionBankService;
-import org.springframework.stereotype.Service;
-import java.util.List;
+
 import lombok.RequiredArgsConstructor;
-import org.hibernate.service.spi.ServiceException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -19,13 +21,14 @@ public class QuestionBankServiceImpl implements QuestionBankService {
     private final QuestionBankRepository questionBankRepository;
     private static final Logger logger = LoggerFactory.getLogger(QuestionBankServiceImpl.class);
 
-
     public QuestionBank createQuestionBank(QuestionBank questionBank) {
         try {
+            // QuestionBank questionBank = serviceUtil.mapRequestToEntity(questionBankRequest);
             return questionBankRepository.save(questionBank);
         } catch (Exception e) {
             logger.error("An unexpected error occurred while creating the question bank: " + e.getMessage());
-            throw new ServiceException("An unexpected error occurred while creating the question bank: " + e.getMessage());
+            throw new ServiceException(
+                    "An unexpected error occurred while creating the question bank: " + e.getMessage());
         }
     }
 
@@ -43,17 +46,19 @@ public class QuestionBankServiceImpl implements QuestionBankService {
 
     @Override
     public QuestionBank findById(long questionBankId) throws Exception {
-        return questionBankRepository.findById(questionBankId).orElseThrow(() -> new Exception("Question Bank not found"));
+        return questionBankRepository.findById(questionBankId)
+                .orElseThrow(() -> new Exception("Question Bank not found"));
     }
 
     @Override
     public QuestionBank updateQuestionBank(long id, QuestionBank updatedQuestionBank) {
         try {
             // Retrieve the existing question bank
+            // QuestionBank updatedQuestionBank = serviceUtil.mapRequestToEntity(QuestionBankRequest);
             QuestionBank existingQuestionBank = questionBankRepository.findById(id)
                     .orElseThrow(() -> new Exception("Question bank not found with id: " + id));
 
-            if(!existingQuestionBank.getTeacherId().equals(updatedQuestionBank.getTeacherId())) {
+            if (!existingQuestionBank.getTeacherId().equals(updatedQuestionBank.getTeacherId())) {
                 throw new Exception("The teacher Id cannot be updated");
             }
 

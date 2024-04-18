@@ -1,8 +1,8 @@
 package com.iamneo.springboot.LMS.model;
 
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.iamneo.springboot.LMS.enumerated.TokenType;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
