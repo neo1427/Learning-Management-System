@@ -12,10 +12,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class ChoiceRequest {
-    
+
     @NotBlank(message = "Please provide an option")
+    @Schema(name = "Option Body", example = "Paris", description = "The body of the option", required = true)
     private String optionBody;
 
-    @NotNull(message = "Provide this option is correct or not")
+    @NotNull(message = "Provide if this option is correct or not")
+    @Schema(name = "Is Correct", example = "true", description = "Indicates whether this option is correct or not", required = true)
     private boolean isCorrect;
 }

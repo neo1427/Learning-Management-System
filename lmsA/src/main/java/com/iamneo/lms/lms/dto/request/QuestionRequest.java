@@ -15,8 +15,10 @@ import lombok.NoArgsConstructor;
 @Builder
 public class QuestionRequest {
     @NotBlank(message = "Question cannot be empty")
+    @Schema(name = "Q1", description = "The question you want to create", example = "What is the capital of France?")
     private String question;
 
-    @Size(min = 2, message = "There should be atleast 2 options")
+    @Size(min = 2, message = "There should be at least 2 options")
+    @Schema(name = "Options", description = "The list of options for the question", minItems = 2)
     private List<ChoiceRequest> options;
 }

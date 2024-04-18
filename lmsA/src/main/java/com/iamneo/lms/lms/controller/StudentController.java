@@ -26,9 +26,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class StudentController {
 
     private final StudentService studentService;
-
+    @Operation(summary = "Saves student's answer", description = "This API endpoint saves the answer submitted by a student for a question.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Answer saved successfully"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error")
+    })
     @PostMapping("/answer/{questionId}")
-    public ResponseEntity<BasicResponse<Answer>> studentAnswer(@RequestBody AnswerRequest answerRequest) {
+    public ResponseEntity<BasicResponse<Answer>> studentAnswer(
+            @PathVariable @Parameter(name = "Question Id", description = "From front end we'll get the The ID of the question", example = "Q1")
+            @RequestBody AnswerRequest answerRequest) {
         try {
             Answer answer = studentService.setAnswer(answerRequest);
             return new ResponseEntity<>(
