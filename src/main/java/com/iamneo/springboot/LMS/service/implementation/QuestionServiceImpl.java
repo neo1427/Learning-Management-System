@@ -1,6 +1,5 @@
-package com.iamneo.springboot.LMS.service.implementations;
+package com.iamneo.springboot.LMS.service.implementation;
 
-import com.iamneo.springboot.LMS.service.QuestionService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,6 +10,7 @@ import com.iamneo.springboot.LMS.model.QuestionBank;
 import com.iamneo.springboot.LMS.repository.ChoiceRepository;
 import com.iamneo.springboot.LMS.repository.QuestionBankRepository;
 import com.iamneo.springboot.LMS.repository.QuestionRepository;
+import com.iamneo.springboot.LMS.service.QuestionService;
 import com.iamneo.springboot.LMS.utils.ServiceUtil;
 
 import lombok.RequiredArgsConstructor;
@@ -91,9 +91,10 @@ public class QuestionServiceImpl implements QuestionService {
             questionBankRepository.save(questionBank);
             questionsWithError.setData(questions);
             return questionsWithError;
-   
+
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
     }
 }
+

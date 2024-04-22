@@ -1,4 +1,4 @@
-package com.iamneo.springboot.LMS.service.implementations;
+package com.iamneo.springboot.LMS.service.implementation;
 
 import com.iamneo.springboot.LMS.dto.request.AnswerRequest;
 import com.iamneo.springboot.LMS.model.Answer;
@@ -92,3 +92,4 @@ public class StudentServiceImpl implements StudentService {
                 .build();
     }
 }
+
