@@ -1,4 +1,4 @@
-package com.iamneo.springboot.LMS.service.implementations;
+package com.iamneo.springboot.LMS.service.implementation;
 
 import com.iamneo.springboot.LMS.dto.request.LoginRequest;
 import com.iamneo.springboot.LMS.dto.response.BasicResponse;
@@ -67,3 +67,4 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
 }
+

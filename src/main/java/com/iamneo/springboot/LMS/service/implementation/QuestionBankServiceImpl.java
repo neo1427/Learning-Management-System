@@ -1,11 +1,11 @@
-package com.iamneo.springboot.LMS.service.implementations;
+package com.iamneo.springboot.LMS.service.implementation;
 
-import com.iamneo.springboot.LMS.service.QuestionBankService;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.stereotype.Service;
 
 import com.iamneo.springboot.LMS.model.QuestionBank;
 import com.iamneo.springboot.LMS.repository.QuestionBankRepository;
+import com.iamneo.springboot.LMS.service.QuestionBankService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -75,3 +75,4 @@ public class QuestionBankServiceImpl implements QuestionBankService {
         }
     }
 }
+
