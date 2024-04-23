@@ -1,5 +1,4 @@
 package com.iamneo.springboot.LMS.controller;
-
 import org.springframework.web.bind.annotation.RestController;
 
 import com.iamneo.springboot.LMS.dto.request.LoginRequest;

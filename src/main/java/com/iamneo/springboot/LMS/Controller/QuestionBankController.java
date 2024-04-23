@@ -1,4 +1,4 @@
-package com.iamneo.springboot.LMS.Controller;
+package com.iamneo.springboot.LMS.controller;
 
 import com.iamneo.springboot.LMS.dto.request.QuestionBankRequest;
 import com.iamneo.springboot.LMS.dto.response.BasicResponse;
