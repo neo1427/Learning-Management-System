@@ -1,5 +1,6 @@
 package com.iamneo.springboot.LMS.controller;
 
+
 import com.iamneo.springboot.LMS.dto.request.RegisterRequest;
 import com.iamneo.springboot.LMS.dto.response.BasicResponse;
 import com.iamneo.springboot.LMS.enumerated.Role;
@@ -70,5 +71,4 @@ public class AdminController {
         return new ResponseEntity<>(errorMap, HttpStatus.BAD_REQUEST);
     }
 }
-
 
