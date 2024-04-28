@@ -43,6 +43,12 @@ public class StudentController {
     }
 
     // Get All tests that are there
+    @Operation(summary = "Retrieving all the created tests", description = "This API endpoint retrieves all the tests that are already previously created.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Tests are retrieved"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error")
+    })
+
     @GetMapping("/getAllTests")
     public ResponseEntity<BasicResponse<List<Test>>> getAllTests() {
         try {
@@ -56,6 +62,12 @@ public class StudentController {
     }
 
     // Get Test with test id
+    @Operation(summary = "Retrieve the test with Id", description = "This API endpoint helps to retrieve the previously created tests using the test Id.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "The test ois successfully retrieved using test id"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error")
+    })
+
     @GetMapping("/getSpeceficTest/{testId}")
     public ResponseEntity<BasicResponse<Test>> getTestById(@PathVariable long testId) {
         try {
@@ -74,6 +86,11 @@ public class StudentController {
     }
 
     // get all test by course id
+    @Operation(summary = "", description = "This API endpoint saves the answer submitted by a student for a question.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Answer saved successfully"),
+            @ApiResponse(responseCode = "500", description = "Internal Server Error")
+    })
     @GetMapping("/getTestByCourse/{courseId}")
     public ResponseEntity<BasicResponse<List<Test>>> getMethodName(@PathVariable String courseId) {
         try {

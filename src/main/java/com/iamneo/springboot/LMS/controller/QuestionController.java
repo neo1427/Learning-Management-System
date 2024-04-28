@@ -5,6 +5,11 @@ import com.iamneo.springboot.LMS.dto.response.BasicResponse;
 import com.iamneo.springboot.LMS.model.Question;
 import com.iamneo.springboot.LMS.service.QuestionService;
 import com.iamneo.springboot.LMS.utils.ServiceUtil;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,9 +36,16 @@ public class QuestionController {
     private final ServiceUtil serviceUtil;
 
     // Create a new question with choices
+    @Operation(summary = "Create a new question with choices", description = "This is the api endpoint that helps to add new question with choices")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Successfully Created"),
+            @ApiResponse(responseCode = "500", description = "Unexpected Error Occured")
+    })
+
     @PostMapping("/question-bank/{questionBankId}")
-    public ResponseEntity<BasicResponse<Question>> createQuestionWithChoices(@PathVariable long questionBankId,
-            @RequestBody @Valid QuestionRequest questionRequest) {
+    public ResponseEntity<BasicResponse<Question>> createQuestionWithChoices(
+            @Parameter(name = "Question Id", description = "We have to create questions with choices", example = "12345") @PathVariable long questionBankId,
+            @Parameter(name = "New Question request", description = "Details of the question with choices") @RequestBody @Valid QuestionRequest questionRequest) {
         try {
             Question question = serviceUtil.mapRequestToEntity(questionRequest, questionBankId);
             Question createdQuestion = questionService.createQuestion(question, questionBankId);
@@ -47,9 +59,17 @@ public class QuestionController {
     }
 
     // Update a question with choices
+    @Operation(summary = "Update question with choices", description = "This is the api endpoint that helps to update question with choices")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully Created"),
+            @ApiResponse(responseCode = "500", description = "Unexpected Error Occured")
+    })
+
     @PutMapping("/{questionId}/question-bank/{questionBankId}")
-    public ResponseEntity<BasicResponse<Question>> updateQuestionWithChoices(@PathVariable long questionId,
-            @PathVariable long questionBankId, @RequestBody @Valid QuestionRequest questionRequest) {
+    public ResponseEntity<BasicResponse<Question>> updateQuestionWithChoices(
+            @Parameter(name = "Update question with Id", description = "The question will be updated with question Id", example = "12345") @PathVariable long questionId,
+            @Parameter(name = "Update the Question Bank with Id", description = "The Question Bank will be updated with Id", example = "12345") @PathVariable long questionBankId, 
+            @Parameter(name = "Updated question request", description = "Updated question is requested ") @RequestBody @Valid QuestionRequest questionRequest) {
         try {
             Question question = serviceUtil.mapRequestToEntity(questionRequest, questionBankId);
             Question updatedQuestion = questionService.updateQuestion(questionId, question);
