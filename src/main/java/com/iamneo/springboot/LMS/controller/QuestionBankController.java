@@ -1,19 +1,24 @@
 package com.iamneo.springboot.LMS.controller;
 
-import com.iamneo.springboot.LMS.dto.request.QuestionBankRequest;
-import com.iamneo.springboot.LMS.dto.response.BasicResponse;
-import com.iamneo.springboot.LMS.model.QuestionBank;
-import com.iamneo.springboot.LMS.service.QuestionBankService;
-import com.iamneo.springboot.LMS.utils.ServiceUtil;
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Description;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
+
+import com.iamneo.springboot.LMS.dto.request.QuestionBankRequest;
+import com.iamneo.springboot.LMS.dto.response.BasicResponse;
+import com.iamneo.springboot.LMS.model.QuestionBank;
+import com.iamneo.springboot.LMS.service.QuestionBankService;
+import com.iamneo.springboot.LMS.utils.ServiceUtil;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 import java.util.HashMap;
 import java.util.List;
@@ -29,10 +34,15 @@ public class QuestionBankController {
     private final ServiceUtil serviceUtil;
 
     // Create a new question bank
-    @Description("This is an API to create the question bank that is only accessible by Teacher and the Admin")
+    @Operation(summary = "Create a new question bank", description = "This is the api endpoint that helps to add a new question bank that helps to add questions")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Successfully Created"),
+            @ApiResponse(responseCode = "500", description = "Unexpected Error Occured")
+    })
+
     @PostMapping
     public ResponseEntity<BasicResponse<QuestionBank>> createQuestionBank(
-            @RequestBody @Valid QuestionBankRequest questionBankRequest) {
+            @Parameter(name="Question Bank", description="The details of the question bank you want to create") @RequestBody @Valid QuestionBankRequest questionBankRequest) {
         try {
             QuestionBank questionBank = serviceUtil.mapRequestToEntity(questionBankRequest);
             QuestionBank createdQuestionBank = questionBankService.createQuestionBank(questionBank);
@@ -45,9 +55,16 @@ public class QuestionBankController {
     }
 
     // Update Question bank details
+    @Operation(summary = "Update the Question Bank details", description = "This is the api endpoint that helps to update the question bank details for the selected question bank")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully Updated"),
+            @ApiResponse(responseCode = "500", description = "Unexpected Error Occured")
+    })
+
     @PutMapping("/{id}")
-    public ResponseEntity<BasicResponse<QuestionBank>> updateQuestionBank(@PathVariable long id,
-            @RequestBody @Valid QuestionBankRequest questionBankRequest) {
+    public ResponseEntity<BasicResponse<QuestionBank>> updateQuestionBank(
+            @Parameter(name="Question Bank Id", description="Id of the Question bank we have to update", example="12345") @PathVariable long id,
+            @Parameter(name= "New Question Bank Request", description="Details of the updated Question Bank") @RequestBody @Valid QuestionBankRequest questionBankRequest) {
         try {
             QuestionBank updatedQuestionBank = serviceUtil.mapRequestToEntity(questionBankRequest);
             QuestionBank result = questionBankService.updateQuestionBank(id, updatedQuestionBank);
@@ -60,6 +77,12 @@ public class QuestionBankController {
     }
 
     // Get all question banks
+    @Operation(summary = "Get all Question Banks", description = "This is the api endpoint that helps to retrieve all question banks")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully Retrieved"),
+            @ApiResponse(responseCode = "500", description = "Unexpected Error Occured")
+    })
+
     @GetMapping
     public ResponseEntity<BasicResponse<List<QuestionBank>>> getAllQuestionBanks() {
         try {
@@ -73,9 +96,15 @@ public class QuestionBankController {
     }
 
     // Get Question Bank from question bank id
+    @Operation(summary ="Get a Question Bank by Id", description="This is the api endpoint that helps to retrieve a question bank by its ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successfully Retrieved"),
+            @ApiResponse(responseCode = "500", description = "Unexpected Error Occured")
+    })
+
     @GetMapping("/{questionBankId}")
     public ResponseEntity<BasicResponse<QuestionBank>> getQuestionBankFromQuestionId(
-            @PathVariable Long questionBankId) {
+            @Parameter(name="Question Bank Id", description="Id of the Question bank we have to update", example="12345") @PathVariable Long questionBankId) {
         try {
             QuestionBank questionBank = questionBankService.findById(questionBankId);
             return ResponseEntity.ok(BasicResponse.<QuestionBank>builder().data(questionBank)
