@@ -67,6 +67,7 @@ public class StudentProfileController {
             // @RequestParam("image") MultipartFile image,
             @RequestBody @Valid StudentProfileRequest studentProfileRequest) {
         // var studentProfile = studentProfileService.addProfile(studentProfileRequest);
+        // var studentProfile = studentProfileService.addProfile(studentProfileRequest);
 
         return studentProfileRequest;
     }
